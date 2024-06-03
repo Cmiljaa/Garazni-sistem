@@ -10,7 +10,7 @@ namespace Garazni_sistem
     {
         private string Karoserija { get; set; }
 
-        public Automobil(int _parking_mesto) : base(_parking_mesto) { Vrsta = "Automobil"; }
+        public Automobil(int _parking_mesto) : base(_parking_mesto) {}
 
         public bool ZadKar(string _Karoserija)
         {
@@ -20,13 +20,13 @@ namespace Garazni_sistem
         public override void Citaj()
         {
             base.Citaj();
-            Console.Write("Unesite karoseriju:   ");
+            Console.Write("Unesite karoseriju: ");
             Karoserija = Console.ReadLine();
         }
 
         public override string ToString()
         {
-            return $"Vrsta vozila {Vrsta}, {base.ToString()} Karoserija {Karoserija}";
+            return string.Format($"Vrsta vozila Automobil, Registracija vozila {Registracija} Vlasnik vozila {Vlasnik} Telefon {Telefon} Broj parking mesta {Parking_mesto}");
         }
     }
 }

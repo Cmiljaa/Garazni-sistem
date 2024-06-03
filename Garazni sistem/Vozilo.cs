@@ -9,31 +9,31 @@ namespace Garazni_sistem
 {
     internal abstract class Vozilo
     {
-        protected string Vrsta { get; set; }
+        protected string Registracija { get; set; }
 
-        private string Registracija { get; set; }
-
-        private string Vlasnik { get; set; }
+        protected string Vlasnik { get; set; }
 
         private string Marka { get; set; }
 
         private string Model { get; set; }
 
-        private int Parking_mesto { get; set; }
+        protected int Parking_mesto { get; set; }
 
-        private string Telefon { get; set; }
+        protected string Telefon { get; set; }
 
         public Vozilo(int _parking_mesto)
         {
             Parking_mesto = _parking_mesto;
         }
 
-        public bool ZadRegVla(string vrsta, string parametar)
+        public bool ZadReg(string _Registracija)
         {
-            if (vrsta.ToLower() == "vlasnik")
-                return Vlasnik == parametar;
-            else
-                return Registracija == parametar;
+            return Registracija == _Registracija;
+        }
+
+        public bool ZadVla(string _Vlasnik)
+        {
+            return Vlasnik == _Vlasnik;
         }
 
         public bool ZadMarMod(string _Marka, string _Model)
@@ -46,23 +46,26 @@ namespace Garazni_sistem
             return Parking_mesto == _Parking_mesto;
         }
 
+        public void Info()
+        {
+            Console.WriteLine($"Broj parking mesta {Parking_mesto} Vlasnik {Vlasnik} Telefon {Telefon}");
+        }
+
         public virtual void Citaj()
         {
-            Console.Write("Unesite registraciju:   ");
+            Console.Write("Unesite registraciju: ");
             Registracija = Console.ReadLine();
-            Console.Write("Unesite model:   ");
-            Model = Console.ReadLine();
-            Console.Write("Unesite marku:   ");
+            Console.Write("Unesite marku: ");
             Marka = Console.ReadLine();
+            Console.Write("Unesite model: ");
+            Model = Console.ReadLine();
             Console.Write("Unesite vlasnika: ");
             Vlasnik = Console.ReadLine();
-            Console.Write("Unesite telefon:  ");
+            Console.Write("Unesite telefon: ");
             Telefon = Console.ReadLine();
         }
 
-        public virtual string ToString()
-        {
-            return $"Registracija vozila {Registracija} Vlasnik vozila {Vlasnik} Telefon {Telefon} Broj parking mesta {Parking_mesto}";
-        }
+        public abstract override string ToString();
+
     }
 }

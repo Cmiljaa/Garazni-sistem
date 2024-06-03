@@ -12,16 +12,16 @@ namespace Garazni_sistem
         private double Visina { get; set; }
         private double Duzina { get; set; }
 
-        public Kamion(int _parking_mesto) : base(_parking_mesto) { Vrsta = "Kamion"; }
+        public Kamion(int _parking_mesto) : base(_parking_mesto) {}
 
         public override void Citaj()
         {
             base.Citaj();
-            Console.Write("Unesite visinu:   ");
+            Console.Write("Unesite visinu: ");
             Visina = double.Parse(Console.ReadLine());
             if (Visina > 2.5)
                 throw new Exception("Kamion je previsok!");
-            Console.Write("Unesite duzinu:   ");
+            Console.Write("Unesite duzinu: ");
             Duzina = double.Parse(Console.ReadLine());
             if (Duzina > 5.3)
                 throw new Exception("Kamion je predugacak!");
@@ -29,7 +29,7 @@ namespace Garazni_sistem
 
         public override string ToString()
         {
-            return $"Vrsta vozila: {Vrsta}, {base.ToString()}";
+            return string.Format($"Vrsta vozila: Kamion Registracija vozila {Registracija} Vlasnik vozila {Vlasnik} Telefon {Telefon} Broj parking mesta {Parking_mesto} ");
         }
     }
 }
