@@ -12,8 +12,6 @@ namespace Garazni_sistem
         private int brojac = 0;
         private bool kraj = true;
 
-        public string da;
-
         public void Pokreni()
         {
             while (kraj)

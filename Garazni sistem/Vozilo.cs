@@ -10,7 +10,7 @@ namespace Garazni_sistem
     internal abstract class Vozilo
     {
         protected string Registracija { get; set; }
-
+        
         protected string Vlasnik { get; set; }
 
         private string Marka { get; set; }
