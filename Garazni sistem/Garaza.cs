@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Garazni_sistem
 {
     internal class Garaza
     {
-        private List<Vozilo> garaža = new List<Vozilo>();
-        private int brojac = 0;
-        private bool kraj = true;
+        private List<Vozilo> garaza = new List<Vozilo>();
+        private int Brojac = 0;
+        private bool Kraj = true;
 
         public void Pokreni()
         {
-            while (kraj)
+            while (Kraj)
             {
                 Console.WriteLine("\n1. Unesi vozilo");
                 Console.WriteLine("2. Pretraga vozila");
@@ -39,10 +40,10 @@ namespace Garazni_sistem
                         IzmeniVozilo();
                         break;
                     case 5:
-                        kraj = false;
+                        Kraj = false;
                         break;
                     default:
-                        Console.WriteLine("Pogresna komanda!");
+                        Console.WriteLine("Pogrešna komanda!");
                         break;
                 }
             }
@@ -50,7 +51,7 @@ namespace Garazni_sistem
 
         private void DodajVozilo()
         {
-            if (brojac == 30)
+            if (Brojac == 30)
             {
                 Console.WriteLine("Garaža je puna!");
                 return;
@@ -61,21 +62,21 @@ namespace Garazni_sistem
             int vrsta = int.Parse(Console.ReadLine());
             if (vrsta == 1)
             {
-                Automobil automobil = new Automobil(garaža.Count + 1);
+                Automobil automobil = new Automobil(garaza.Count + 1);
                 automobil.Citaj();
-                garaža.Add(automobil);
-                brojac++;
+                garaza.Add(automobil);
+                Brojac++;
             }
             else if (vrsta == 2)
             {
-                Kamion kamion = new Kamion(garaža.Count + 1);
+                Kamion kamion = new Kamion(garaza.Count + 1);
                 kamion.Citaj();
-                garaža.Add(kamion);
-                brojac++;
+                garaza.Add(kamion);
+                Brojac++;
             }
             else
             {
-                Console.WriteLine("Pogresna komanda!");
+                Console.WriteLine("Pogrešna komanda!");
             }
         }
 
@@ -94,7 +95,7 @@ namespace Garazni_sistem
                 case 1:
                     Console.Write("Unesite registraciju: ");
                     string registracija1 = Console.ReadLine();
-                    foreach (Vozilo x in garaža)
+                    foreach (Vozilo x in garaza)
                     {
                         if (x.ZadReg(registracija1))
                             x.Info();
@@ -103,7 +104,7 @@ namespace Garazni_sistem
                 case 2:
                     Console.Write("Unesite vlasnika: ");
                     string vlasnik = Console.ReadLine();
-                    foreach (Vozilo x in garaža)
+                    foreach (Vozilo x in garaza)
                     {
                         if (x.ZadVla(vlasnik))
                             x.Info();
@@ -114,7 +115,7 @@ namespace Garazni_sistem
                     string marka = Console.ReadLine();
                     Console.Write("Unesite model: ");
                     string model = Console.ReadLine();
-                    foreach (Vozilo x in garaža)
+                    foreach (Vozilo x in garaza)
                     {
                         if (x.ZadMarMod(marka, model))
                             x.Info();
@@ -123,7 +124,7 @@ namespace Garazni_sistem
                 case 4:
                     Console.Write("Unesite broj parking mesta: ");
                     int mesto = int.Parse(Console.ReadLine());
-                    foreach (Vozilo x in garaža)
+                    foreach (Vozilo x in garaza)
                     {
                         if (x.ZadParMes(mesto))
                             x.Info();
@@ -136,14 +137,14 @@ namespace Garazni_sistem
                     int vozilo = int.Parse(Console.ReadLine());
                     if (vozilo == 1)
                     {
-                        foreach (Automobil x in garaža)
+                        foreach (Automobil x in garaza)
                         {
                             x.Info();
                         }
                     }
                     else if (vozilo == 2)
                     {
-                        foreach (Kamion x in garaža)
+                        foreach (Kamion x in garaza)
                         {
                             x.Info();
                         }
@@ -161,7 +162,11 @@ namespace Garazni_sistem
         
         private void IspisiVozila()
         {
-            foreach (Vozilo x in garaža)
+            if(garaza.Count() == 0)
+            {
+                Console.WriteLine("Garaža je prazna!");
+            }
+            foreach (Vozilo x in garaza)
             {
                 Console.WriteLine(x);
             }
@@ -171,7 +176,7 @@ namespace Garazni_sistem
         {
             Console.Write("\n" + "Unesite registraciju: ");
             string registracija = Console.ReadLine();
-            foreach (Vozilo x in garaža)
+            foreach (Vozilo x in garaza)
             {
                 if (x.ZadReg(registracija))
                 {

@@ -48,7 +48,7 @@ namespace Garazni_sistem
 
         public void Info()
         {
-            Console.WriteLine($"Broj parking mesta {Parking_mesto} Vlasnik {Vlasnik} Telefon {Telefon}");
+            Console.WriteLine($"Broj parking mesta {Parking_mesto}, Vlasnik {Vlasnik}, Telefon {Telefon}");
         }
 
         public virtual void Citaj()

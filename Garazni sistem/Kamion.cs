@@ -29,7 +29,7 @@ namespace Garazni_sistem
 
         public override string ToString()
         {
-            return string.Format($"Vrsta vozila: Kamion Registracija vozila {Registracija} Vlasnik vozila {Vlasnik} Telefon {Telefon} Broj parking mesta {Parking_mesto} ");
+            return string.Format($"Kamion, Registracija {Registracija}, Vlasnik {Vlasnik}, Telefon {Telefon}, Broj parking mesta {Parking_mesto}");
         }
     }
 }

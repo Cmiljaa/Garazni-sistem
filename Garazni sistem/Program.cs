@@ -12,8 +12,8 @@ namespace Garazni_sistem
     {
         static void Main(string[] args)
         {
-            Garaza garaza = new Garaza();
-            garaza.Pokreni();
+            Garaza garaza1 = new Garaza();
+            garaza1.Pokreni();
 
         }
     }
