@@ -10,7 +10,7 @@ namespace Garazni_sistem
     internal abstract class Vozilo
     {
         protected string Registracija { get; set; }
-        
+
         protected string Vlasnik { get; set; }
 
         private string Marka { get; set; }
@@ -21,10 +21,17 @@ namespace Garazni_sistem
 
         protected string Telefon { get; set; }
 
-        public Vozilo(int _parking_mesto)
+        public string DajRegistraciju() { return Registracija; }
+
+        public void PostaviMesto(int vrednost)
         {
-            Parking_mesto = _parking_mesto;
+            if (vrednost < 0)
+                throw new Exception("Nepostojeće parking mesto!");
+            else
+                Parking_mesto = vrednost;
         }
+
+        public int DajMesto() { return Parking_mesto; }
 
         public bool ZadReg(string _Registracija)
         {

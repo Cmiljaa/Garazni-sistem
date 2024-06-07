@@ -12,8 +12,6 @@ namespace Garazni_sistem
         private double Visina { get; set; }
         private double Duzina { get; set; }
 
-        public Kamion(int _parking_mesto) : base(_parking_mesto) {}
-
         public override void Citaj()
         {
             base.Citaj();

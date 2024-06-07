@@ -10,8 +10,6 @@ namespace Garazni_sistem
     {
         private string Karoserija { get; set; }
 
-        public Automobil(int _parking_mesto) : base(_parking_mesto) {}
-
         public bool ZadKar(string _Karoserija)
         {
             return Karoserija == _Karoserija;
