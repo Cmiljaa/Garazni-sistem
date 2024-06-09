@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automobil.cs" />
+    <Compile Include="Dvotockas.cs" />
     <Compile Include="Garaza.cs" />
     <Compile Include="Kamion.cs" />
     <Compile Include="Program.cs" />
