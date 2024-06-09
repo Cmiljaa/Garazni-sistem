@@ -35,17 +35,17 @@ namespace Garazni_sistem
 
         public bool ZadReg(string _Registracija)
         {
-            return Registracija == _Registracija;
+            return Registracija.ToLower() == _Registracija.ToLower();
         }
 
         public bool ZadVla(string _Vlasnik)
         {
-            return Vlasnik == _Vlasnik;
+            return Vlasnik.ToLower() == _Vlasnik.ToLower();
         }
 
         public bool ZadMarMod(string _Marka, string _Model)
         {
-            return (Marka == _Marka) && (Model == _Model);
+            return (Marka == _Marka.ToLower()) && (Model == _Model.ToLower());
         }
 
         public bool ZadParMes(int _Parking_mesto)

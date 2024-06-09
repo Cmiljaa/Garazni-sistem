@@ -12,7 +12,7 @@ namespace Garazni_sistem
 
         public bool ZadKar(string _Karoserija)
         {
-            return Karoserija == _Karoserija;
+            return Karoserija.ToLower() == _Karoserija.ToLower();
         }
 
         public override void Citaj()

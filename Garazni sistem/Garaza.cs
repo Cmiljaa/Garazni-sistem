@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,8 +25,16 @@ namespace Garazni_sistem
                 Console.WriteLine("5. Izbriši vozilo");
                 Console.WriteLine("6. Izlaz");
                 Console.Write("Izaberite opciju: ");
-
-                int unos = int.Parse(Console.ReadLine());
+                int unos = -1;
+                try
+                {
+                     unos = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Morate uneti broj!");
+                    continue;
+                }
                 switch (unos)
                 {
                     case 1:
@@ -63,24 +72,41 @@ namespace Garazni_sistem
             Console.WriteLine("\n" + "1. Automobil");
             Console.WriteLine("2. Kamion");
             Console.Write("Izaberite tip vozila: ");
-            int vrsta = int.Parse(Console.ReadLine());
-            if (vrsta == 1)
-            {
-                Automobil automobil = new Automobil();
-                automobil.Citaj();
-                automobil.PostaviMesto(DodeliMesto(automobil.DajRegistraciju()));
-                garaza.Add(automobil);
+            int vrsta = -1;
+            try{
+                vrsta = int.Parse(Console.ReadLine());
             }
-            else if (vrsta == 2)
+            catch
             {
-                Kamion kamion = new Kamion();
-                kamion.Citaj();
-                kamion.PostaviMesto(DodeliMesto(kamion.DajRegistraciju()));
-                garaza.Add(kamion);
+                Console.WriteLine("Morate uneti broj!");
+                return;
             }
-            else
+            switch (vrsta)
             {
-                Console.WriteLine("Pogrešna komanda!");
+                case 1:
+                    Automobil automobil = new Automobil();
+                    automobil.Citaj();
+                    automobil.PostaviMesto(DodeliMesto(automobil.DajRegistraciju()));
+                    garaza.Add(automobil);
+                    Console.WriteLine("Vozilo uspešno dodato!");
+                    break;
+                case 2:
+                    Kamion kamion = new Kamion();
+                    kamion.Citaj();
+                    kamion.PostaviMesto(DodeliMesto(kamion.DajRegistraciju()));
+                    garaza.Add(kamion);
+                    Console.WriteLine("Vozilo uspešno dodato!");
+                    break;
+                case 3:
+                    Kamion kamion = new Kamion();
+                    kamion.Citaj();
+                    kamion.PostaviMesto(DodeliMesto(kamion.DajRegistraciju()));
+                    garaza.Add(kamion);
+                    Console.WriteLine("Vozilo uspešno dodato!");
+                    break;
+                default:
+                    Console.WriteLine("Nepostojeći tip vozila!");
+                    break;
             }
         }
 
@@ -93,7 +119,16 @@ namespace Garazni_sistem
             Console.WriteLine("4. Parking mestu:");
             Console.WriteLine("5. Vrsti vozila:");
             Console.Write("Izaberite način pretrage: ");
-            int pretraga = int.Parse(Console.ReadLine());
+            int pretraga = -1;
+            try
+            {
+                pretraga = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Morate uneti broj!");
+                return;
+            }
             switch (pretraga)
             {
                 case 1:
@@ -138,24 +173,33 @@ namespace Garazni_sistem
                     Console.WriteLine("1. Automobil:");
                     Console.WriteLine("2. Kamion:");
                     Console.Write("Odaberite vrstu vozila: ");
-                    int vozilo = int.Parse(Console.ReadLine());
-                    if (vozilo == 1)
+                    int vozilo = -1;
+                    try
                     {
-                        foreach (Automobil x in garaza)
-                        {
-                            x.Info();
-                        }
+                        vozilo = int.Parse(Console.ReadLine());
                     }
-                    else if (vozilo == 2)
+                    catch (FormatException)
                     {
-                        foreach (Kamion x in garaza)
-                        {
-                            x.Info();
-                        }
+                        Console.WriteLine("Morate uneti broj!");
+                        return;
                     }
-                    else
+                    switch (vozilo)
                     {
-                        Console.WriteLine("Ne postoji ta vrsta vozila!");
+                        case 1:
+                            foreach (Automobil x in garaza)
+                            {
+                                x.Info();
+                            }
+                            break;
+                        case 2:
+                            foreach (Kamion x in garaza)
+                            {
+                                x.Info();
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("Ne postoji ta vrsta vozila!");
+                            break;
                     }
                     break;
                 default:
@@ -176,11 +220,6 @@ namespace Garazni_sistem
             }
             return -1;
         }
-
-        private void IsprazniMesto(int Mesto)
-        {
-            parking.Remove(Mesto);
-        }
         
         private void IspisiVozila()
         {
@@ -197,7 +236,7 @@ namespace Garazni_sistem
         private void IzbrisiVozilo()
         {
             Console.Write("\n" + "Unesite registraciju: ");
-            string registracija = Console.ReadLine();
+            string registracija = Console.ReadLine(); 
             int key = 0; int index = -1;
 
             foreach (Vozilo x in garaza)
@@ -214,9 +253,9 @@ namespace Garazni_sistem
                 Console.WriteLine("Vozilo ne postoji u garaži!");
                 return;
             }
-
+            
             garaza.RemoveAt(index);
-            IsprazniMesto(key);
+            parking.Remove(key);
             Console.WriteLine("Vozilo uspešno obrisano!");
         }
 
@@ -229,8 +268,10 @@ namespace Garazni_sistem
                 if (x.ZadReg(registracija))
                 {
                     x.Citaj();
+                    return;
                 }
             }
+            Console.WriteLine("Vozilo ne postoji u garaži!"); 
         }
     }
 }
