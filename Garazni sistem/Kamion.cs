@@ -34,10 +34,9 @@ namespace Garazni_sistem
                 Visina = visina;
                 Duzina = duzina;
             }
-            catch (FormatException)
+            catch (Exception)
             {
-                Console.WriteLine("Neispravan format unosa!");
-                throw;
+                throw new Exception("Neispravan format unosa!");
             }
         }
 
